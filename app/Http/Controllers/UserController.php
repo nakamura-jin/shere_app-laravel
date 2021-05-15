@@ -12,12 +12,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = User::all();
-        return response()->json([
-            'data' => $items
-        ], 200);
+        $items = User::find($request->email);
+                return response()->json([
+                'data' => $items
+            ], 200);
+
     }
 
     /**
