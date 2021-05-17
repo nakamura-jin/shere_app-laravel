@@ -14,11 +14,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $items = User::find($request->email);
+        $items = User::all();
                 return response()->json([
                 'data' => $items
             ], 200);
-
     }
 
     /**
@@ -41,8 +40,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Request $request, User $user)
     {
+        $email = $request->email;
+        $user = User::find($email);
         $item = User::find($user);
         if($item) {
             return response()->json([
