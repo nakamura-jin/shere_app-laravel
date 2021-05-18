@@ -12,10 +12,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $items = User::all();
-                return response()->json([
+            return response()->json([
                 'data' => $items
             ], 200);
     }
@@ -94,6 +94,23 @@ class UserController extends Controller
         if($item) {
             return response()->json([
                 'message' => 'Deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
+    }
+
+
+    public function findUser(Request $request, $email)
+    {
+        $email = $email;
+        $findUser = User::where('email', $email)->first();
+
+        if ($findUser) {
+            return response()->json([
+                'data' => $findUser
             ], 200);
         } else {
             return response()->json([
