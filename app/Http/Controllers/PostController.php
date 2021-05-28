@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,6 +16,9 @@ class PostController extends Controller
     public function index()
     {
         $items = Post::all();
+        foreach ($items as $item) {
+            $item->user;
+        }
         return response()->json([
             'data' => $items
         ], 200);
@@ -90,6 +94,22 @@ class PostController extends Controller
         if ($item) {
             return response()->json([
                 'message' => 'Deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
+    }
+
+    public function findPost(Request $request, $id)
+    {
+        $id = $id;
+        $findPost = Post::where('id', $id)->first();
+
+        if ($findPost) {
+            return response()->json([
+                'data' => $findPost
             ], 200);
         } else {
             return response()->json([
