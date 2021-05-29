@@ -18,6 +18,7 @@ class PostController extends Controller
         $items = Post::all();
         foreach ($items as $item) {
             $item->user;
+            $item->like;
         }
         return response()->json([
             'data' => $items
@@ -94,22 +95,6 @@ class PostController extends Controller
         if ($item) {
             return response()->json([
                 'message' => 'Deleted successfully',
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'Not found',
-            ], 404);
-        }
-    }
-
-    public function findPost(Request $request, $id)
-    {
-        $id = $id;
-        $findPost = Post::where('id', $id)->first();
-
-        if ($findPost) {
-            return response()->json([
-                'data' => $findPost
             ], 200);
         } else {
             return response()->json([
