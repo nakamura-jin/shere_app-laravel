@@ -48,6 +48,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $item = Post::find($post);
+        foreach ($item as $attachment) {
+            $attachment->user;
+            $attachment->like;
+        }
         if ($item) {
             return response()->json([
                 'data' => $item

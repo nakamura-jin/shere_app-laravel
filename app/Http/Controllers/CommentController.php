@@ -16,6 +16,11 @@ class CommentController extends Controller
     public function index()
     {
         $items = Comment::all();
+        foreach ($items as $item) {
+            $item->user;
+            $item->like;
+            $item->post;
+        }
         return response()->json([
             'data' => $items
         ], 200);
