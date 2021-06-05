@@ -20,7 +20,7 @@ class Comment extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function posts() {
+    public function post() {
         return $this->hasMany('App\Models\Post');
     }
 }

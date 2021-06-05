@@ -18,8 +18,6 @@ class CommentController extends Controller
         $items = Comment::all();
         foreach ($items as $item) {
             $item->user;
-            $item->like;
-            $item->post;
         }
         return response()->json([
             'data' => $items
@@ -49,6 +47,9 @@ class CommentController extends Controller
     public function show(Comment $comment)
     {
         $item = Comment::find($comment);
+        foreach ($item as $tComment) {
+            $tComment->user;
+        }
         if ($item) {
             return response()->json([
                 'data' => $item
