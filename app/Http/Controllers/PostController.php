@@ -47,14 +47,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $item = Post::find($post);
-        foreach ($item as $tPost) {
-            $tPost->user;
-            $tPost->like;
-        }
-        if ($item) {
+        $post->user;
+        $post->like;
+        if ($post) {
             return response()->json([
-                'data' => $item
+                'data' => $post
             ], 200);
         } else {
             return response()->json([

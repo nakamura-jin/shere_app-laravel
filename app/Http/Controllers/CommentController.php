@@ -46,13 +46,10 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        $item = Comment::find($comment);
-        foreach ($item as $tComment) {
-            $tComment->user;
-        }
-        if ($item) {
+        $comment->user;
+        if ($comment) {
             return response()->json([
-                'data' => $item
+                'data' => $comment
             ], 200);
         } else {
             return response()->json([
