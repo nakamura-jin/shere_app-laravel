@@ -32,6 +32,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Comment::$rules);
         $item = Comment::create($request->all());
         return response()->json([
             'data' => $item

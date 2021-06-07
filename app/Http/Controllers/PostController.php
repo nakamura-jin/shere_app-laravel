@@ -33,6 +33,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Post::$rules);
         $item = Post::create($request->all());
         return response()->json([
             'data' => $item
